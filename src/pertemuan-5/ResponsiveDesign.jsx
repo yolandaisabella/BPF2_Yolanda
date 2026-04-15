@@ -52,7 +52,7 @@ function ResponsiveWidth() {
             </p>
 
             <div className="flex flex-col md:flex-row gap-4">
-                <div className="bg-gradient-to-r from-gray-500 to-gray-300 text-white w-full md:w-1/2 p-6 rounded-xl shadow-md">
+                <div className="bg-gradient-to-r from-purple-500 to-purple-300 text-white w-full md:w-1/2 p-6 rounded-xl shadow-md">
                     Kolom 1
                 </div>
 
