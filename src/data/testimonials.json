@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Andi",
+    "avatar": "https://i.pravatar.cc/150?img=1",
+    "review": "Makanannya enak dan cepat sampai."
+  },
+  {
+    "id": 2,
+    "name": "Budi",
+    "avatar": "https://i.pravatar.cc/150?img=2",
+    "review": "Aplikasi mudah digunakan."
+  },
+  {
+    "id": 3,
+    "name": "Sinta",
+    "avatar": "https://i.pravatar.cc/150?img=3",
+    "review": "Banyak promo menarik."
+  },
+  {
+    "id": 4,
+    "name": "Rina",
+    "avatar": "https://i.pravatar.cc/150?img=4",
+    "review": "Pilihan menu sangat lengkap."
+  },
+  {
+    "id": 5,
+    "name": "Doni",
+    "avatar": "https://i.pravatar.cc/150?img=5",
+    "review": "Pelayanan sangat memuaskan."
+  }
+]

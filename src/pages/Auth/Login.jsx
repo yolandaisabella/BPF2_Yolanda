@@ -1,129 +1,66 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios"; 
-import { ImSpinner2 } from "react-icons/im";
-import { BsFillExclamationDiamondFill } from "react-icons/bs";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
-  /* navigate, state & handleChange*/
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [dataForm, setDataForm] = useState({
-    email: "",
-    password: "",
-  });
 
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
-    setDataForm({
-      ...dataForm,
-      [name]: value,
-    });
-  };
-
-  /* process form */
-  const handleSubmit = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
-    setLoading(true);
-    setError(""); // Mengosongkan error lama sebelum request baru
+    const user = JSON.parse(localStorage.getItem("user"));
 
-    axios
-      .post("https://dummyjson.com/user/login", {
-        username: dataForm.email, // API DummyJSON menggunakan username, kita mapping dari input email
-        password: dataForm.password,
-      })
-      .then((response) => {
-        if (response.status !== 200) {
-          setError(response.data.message);
-          return;
-        }
-        // Redirect ke dashboard jika login sukses
-        navigate("/");
-      })
-      .catch((err) => {
-        if (err.response) {
-          setError(err.response.data.message || "An error occurred");
-        } else {
-          setError(err.message || "An unknown error occurred");
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    if (user && user.email === email && user.password === password) {
+      localStorage.setItem("isLogin", "true");
+      navigate("/");
+    } else {
+      alert("Email atau password salah");
+    }
   };
 
-  /* error & loading status */
-  const errorInfo = error ? (
-    <div className="bg-red-200 mb-5 p-5 text-sm font-light text-gray-600 rounded flex items-center">
-      <BsFillExclamationDiamondFill className="text-red-600 me-2 text-lg" />
-      {error}
-    </div>
-  ) : null;
-
-  const loadingInfo = loading ? (
-    <div className="bg-gray-200 mb-5 p-5 text-sm rounded flex items-center">
-      <ImSpinner2 className="me-2 animate-spin" />
-      Mohon Tunggu...
-    </div>
-  ) : null;
   return (
-    <div className="max-w-md mx-auto my-10 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
-        Welcome Back 👋
-      </h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-100 via-white to-orange-50 px-4">
 
-      {errorInfo}
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
 
-      {loadingInfo}
+        <h2 className="text-3xl font-bold text-center text-orange-500 mb-2">
+          Welcome Back
+        </h2>
 
-      {/* 1. PASANGKAN onSubmit KE FORM */}
-      <form onSubmit={handleSubmit}>
-        <div className="mb-5">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email Address / Username
-          </label>
+        <p className="text-center text-gray-500 mb-6">
+          Login to continue ordering food 🍔
+        </p>
+
+        <form onSubmit={handleLogin} className="space-y-4">
+
           <input
-            type="text"
-            id="email"
-            name="email"
-            value={dataForm.email}
-            onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-            placeholder="emilys" // Contoh username bawaan dari DummyJSON untuk testing
-            required
+            className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Password
-          </label>
+
           <input
             type="password"
-            id="password"
-            name="password"
-            value={dataForm.password}
-            onChange={handleChange}
-            className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-            placeholder="emilyspass" // Contoh password bawaan dari DummyJSON untuk testing
-            required
+            className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
 
-        {/* 2. ATUR BUTTON SAAT LOADING */}
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ${
-            loading
-              ? "bg-green-300 cursor-not-allowed"
-              : "bg-green-500 hover:bg-green-600"
-          }`}
-        >
-          {loading ? "Processing..." : "Login"}
-        </button>
-      </form>
+          <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition">
+            Sign In
+          </button>
+
+        </form>
+
+        <p className="text-center text-sm text-gray-500 mt-5">
+          Belum punya akun?{" "}
+          <Link className="text-orange-500 font-semibold" to="/register">
+            Sign Up
+          </Link>
+        </p>
+
+      </div>
     </div>
   );
 }
