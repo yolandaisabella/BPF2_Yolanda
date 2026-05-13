@@ -1,23 +1,25 @@
-import { MdSpaceDashboard } from "react-icons/md";
-import { CiShoppingBasket } from "react-icons/ci";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUser } from "react-icons/fa"; 
+import { AiOutlineUser } from "react-icons/ai"; 
+import { AiOutlineOrderedList } from "react-icons/ai"; 
+import { MdSpaceDashboard } from "react-icons/md"; 
 import { Link, NavLink } from "react-router-dom";
+
 export default function Sidebar() {
-    
-    const menuClass = ({ isActive }) =>
+
+        const menuClass = ({ isActive }) =>
         `flex cursor-pointer items-center rounded-xl p-4  space-x-2
-        ${isActive ?
-            "text-hijau bg-green-200 font-extrabold" :
+        ${isActive ? 
+            "text-hijau bg-green-200 font-extrabold" : 
             "text-gray-600 hover:text-hijau hover:bg-green-200 hover:font-extrabold"
-        }`
+        }`;
 
     return (
         <div id="sidebar" className="flex min-h-screen w-90 flex-col bg-white p-10 shadow-lg">
             {/* Logo */}
             <div id="sidebar-logo" className="flex flex-col">
                 <span id="logo-title" className="font-poppins-extrabold text-[48px] text-gray-900">
-                    Sedap <b id="logo-dot" className="text-hijau">.</b>
-                </span>
+                        Sedap <b id="logo-dot" className="text-hijau">.</b>
+                    </span>
                 <span id="logo-subtitle" className="font-semibold text-gray-400">Modern Admin Dashboard</span>
             </div>
 
@@ -25,20 +27,30 @@ export default function Sidebar() {
             <div id="sidebar-menu" className="mt-10">
                 <ul id="menu-list" className="space-y-3">
                     <li>
-                        <NavLink id="menu-1" to="/" className= {menuClass}>
+                        <NavLink 
+                        id="menu-1" 
+                        to="/" 
+                        className={menuClass}>
                             <MdSpaceDashboard className="mr-4 text-xl" />
-                            Dashboard</NavLink>
-                    </li>
+                            Dashboard
+                            </NavLink>
+                      </li>
                     <li>
-                        <NavLink id="menu-2" to="/orders" className= {menuClass}>
-                            <CiShoppingBasket className="mr-4 text-xl" />
+                        <NavLink 
+                        id="menu-2" 
+                        to="/orders" 
+                        className={menuClass}>
+                            <AiOutlineOrderedList  className="mr-4 text-xl"/>
                             Orders</NavLink>
-                    </li>
-                    <li>
-                        <NavLink id="menu-3" to="/customers" className= {menuClass}>
-                            <FaUserAlt className="mr-4 text-xl" />
+                      </li>
+                      <li>
+                        <NavLink 
+                        id="menu-3" 
+                        to="/customers" 
+                        className={menuClass}>
+                            <FaUser className="mr-4 text-xl"/>
                             Customers</NavLink>
-                    </li>
+                      </li>
                 </ul>
             </div>
 
@@ -51,7 +63,7 @@ export default function Sidebar() {
                             <span className="text-gray-600 flex items-center">Add Menus</span>
                         </div>
                     </div>
-                    <img id="footer-avatar" className="w-20 rounded-full" src="https://avatar.iran.liara.run/public/28" />
+                    <img id="footer-avatar" src="https://avatar.iran.liara.run/public/28" className="w-20 rounded-full"/>
                 </div>
                 <span id="footer-brand" className="font-bold text-gray-400">Sedap Restaurant Admin Dashboard</span>
                 <p id="footer-copyright" className="font-light text-gray-400">&copy; 2025 All Right Reserved</p>
