@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import "./assets/tailwind.css";
 import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
 
 import Loading from "./components/Loading";
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetail />} /> 
         </Route>
 
         {/* Auth */}
