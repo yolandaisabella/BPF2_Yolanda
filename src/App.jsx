@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./assets/tailwind.css";
+import Products from "./pages/Products";
 
 import Loading from "./components/Loading";
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/products" element={<Products />} />
         </Route>
 
         {/* Auth */}
